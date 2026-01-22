@@ -2,6 +2,7 @@
 
 #include "raylib.h"
 
+// Variables
 // ------------------------------------------------------------
 
 extern Font gameFont;
