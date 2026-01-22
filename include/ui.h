@@ -1,6 +1,5 @@
 #pragma once
 
-// Declarations
 // ------------------------------------------------------------
 
 extern char GAME_TITLE[128];
