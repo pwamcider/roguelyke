@@ -2,6 +2,13 @@
 
 // ------------------------------------------------------------
 
-int SCREEN_WIDTH = 1280;
-int SCREEN_HEIGHT = 720;
-char GAME_TITLE[] = "ROGUELYKE";
+Window GameWindow = {
+    .title = "ROGUELYKE",
+    .width = 1280,
+    .height = 720
+};
+
+View GameView = {
+    .cellBuffer = 20,
+    .originPoint = { 50, 50 }
+};

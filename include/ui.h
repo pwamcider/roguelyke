@@ -1,7 +1,21 @@
 #pragma once
 
+#include "raylib.h"
+
 // ------------------------------------------------------------
 
-extern char GAME_TITLE[128];
-extern int SCREEN_HEIGHT;
-extern int SCREEN_WIDTH;
+typedef struct Window {
+    char title[128];
+    int width;
+    int height;
+} Window;
+
+typedef struct View {
+    int cellBuffer;
+    Vector2 originPoint;
+} View;
+
+// ------------------------------------------------------------
+
+extern Window GameWindow;
+extern View GameView;
