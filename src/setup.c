@@ -5,7 +5,7 @@
 // ------------------------------------------------------------
 
 void InitGame(void){
-    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, GAME_TITLE);
+    InitWindow(GameWindow.width, GameWindow.height, GameWindow.title);
     InitAudioDevice();
 
     SetExitKey(KEY_NULL);
