@@ -1,8 +1,5 @@
-#include "objects.h"
+#include "world.h"
 #include "raylib.h"
 
 // ------------------------------------------------------------
 
-Field GameField = {
-
-};
