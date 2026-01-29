@@ -1,6 +1,7 @@
 #include "raylib.h"
 #include "resources.h"
 #include "setup.h"
+#include "world.h"
 
 // ------------------------------------------------------------
 
@@ -24,6 +25,7 @@ int main(void)
 			}
 
 			DrawText("@", 500, 500, 20, WHITE);
+			// DrawText(GameField.cells[0][0].entity->icon, 600, 600, 20, WHITE);
 			
 		EndDrawing();
 	}
