@@ -11,11 +11,17 @@ typedef struct Window {
 } Window;
 
 typedef struct View {
-    int cellBuffer;
+    float cellBuffer;
     Vector2 originPoint;
 } View;
 
+typedef struct Text {
+    int size;
+    int spacing;
+} Text;
+
 // ------------------------------------------------------------
 
-extern Window GameWindow;
+extern Text GameText;
 extern View GameView;
+extern Window GameWindow;
