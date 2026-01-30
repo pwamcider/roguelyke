@@ -2,8 +2,8 @@
 
 // ------------------------------------------------------------
 
-#define fieldSizeX 50
-#define fieldSizeY 50
+#define fieldSizeX 30
+#define fieldSizeY 30
 
 //
 // ------------------------------------------------------------
@@ -44,6 +44,7 @@ typedef struct Entity {
 } Entity;
 
 typedef enum CellType {
+	// Consider if a WALL type is more valuable here than using the Inanimate struct to define walls.
 	GROUND,
 } CellType;
 
@@ -59,7 +60,7 @@ typedef struct Field {
 
 // ------------------------------------------------------------
 
-extern Field GameField;
+extern Field World;
 
 // ------------------------------------------------------------
 
