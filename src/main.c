@@ -15,6 +15,8 @@ int main(void)
 
 	ClearField();
 
+	World.cells[20][20].entity = &PlayerHero;
+
 	while (!WindowShouldClose())
 	{
 		BeginDrawing();
