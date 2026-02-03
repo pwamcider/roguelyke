@@ -8,9 +8,12 @@
 // ------------------------------------------------------------
 
 void DrawField(void) {
-    const char* icon = ".";
     float buffer = GameView.cellBuffer;
     Vector2 target;
+
+    // TODO - Better organize icons for primary drawing function.
+    const char* groundIcon = ".";
+    const char* heroIcon = "@";
 
     for (int x = 0; x < fieldSizeX; x++)
     {
@@ -21,13 +24,11 @@ void DrawField(void) {
 
             if (World.cells[x][y].entity != NULL)
             {
-                // TODO - Draw 
-                DrawText("1", 20, 20, 10, WHITE);
+                DrawTextEx(gameFont, heroIcon, target, GameText.size, GameText.spacing, WHITE);
             }
             else
             {
-                DrawText("2", 20, 20, 10, WHITE);
-                DrawTextEx(gameFont, icon, target, GameText.size, GameText.spacing, WHITE);
+                DrawTextEx(gameFont, groundIcon, target, GameText.size, GameText.spacing, WHITE);
             }
         }
     }
