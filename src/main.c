@@ -13,7 +13,7 @@ int main(void)
 
 	LoadResources();
 
-	ClearField();
+	ClearWorld();
 
 	World.cells[20][20].entity = &PlayerHero;
 
@@ -35,9 +35,10 @@ int main(void)
 			DrawText(GameField.cells[0][0].entity->icon, 600, 600, 20, WHITE);
 			*/
 
-			DrawField();
-
+			UpdateGameState();
 			
+			DrawWorld();
+
 		EndDrawing();
 	}
 
