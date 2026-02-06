@@ -20,8 +20,23 @@ typedef struct Text {
     int spacing;
 } Text;
 
+typedef struct Inputs {
+    int keyMoveNorth;
+    int moveNorth;
+    int keyMoveEast;
+    int moveEast;
+    int keyMoveSouth;
+    int moveSouth;
+    int keyMoveWest;
+    int moveWest;
+    int keyWait;
+    int wait;
+    int noInput;
+} Inputs;
+
 // ------------------------------------------------------------
 
+extern Inputs GameInputs;
 extern Text GameText;
 extern View GameView;
 extern Window GameWindow;
