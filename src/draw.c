@@ -7,7 +7,7 @@
 
 // ------------------------------------------------------------
 
-void DrawField(void) {
+void DrawWorld(void) {
     float buffer = GameView.cellBuffer;
     Vector2 target;
 
