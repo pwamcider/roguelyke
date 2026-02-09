@@ -2,7 +2,6 @@
 #include "stdio.h"
 #include "ui.h"
 #include "update.h"
-#include "world.h"
 
 // ------------------------------------------------------------
 
@@ -48,36 +47,36 @@ int GetInput(void) {
     return input;
 };
 
-bool IsPlayerThere(int x, int y) {
-    return World.cells[x][y].entity == &PlayerHero;
+bool IsPlayerThere(FieldLoc loc) {
+    return World.cells[loc.x][loc.y].entity == &PlayerHero;
 };
 
-void MovePlayer(int input, int x, int y) {
+void MovePlayer(int input, FieldLoc loc) {
     if (input == GameInputs.moveNorth)
     {
-        World.cells[x][y - 1].entity = &PlayerHero;
+        World.cells[loc.x][loc.y - 1].entity = &PlayerHero;
     }
     else if (input == GameInputs.moveEast)
     {
-        World.cells[x + 1][y].entity = &PlayerHero;
+        World.cells[loc.x + 1][loc.y].entity = &PlayerHero;
     }
     else if (input == GameInputs.moveSouth)
     {
-        World.cells[x][y + 1].entity = &PlayerHero;
+        World.cells[loc.x][loc.y + 1].entity = &PlayerHero;
     }
     else if (input == GameInputs.moveWest)
     {
-        World.cells[x - 1][y].entity = &PlayerHero;
+        World.cells[loc.x - 1][loc.y].entity = &PlayerHero;
     }
-    World.cells[x][y].entity = NULL;
+    World.cells[loc.x][loc.y].entity = NULL;
 };
 
-void UpdatePlayer(int input, int x, int y) {
+void UpdatePlayer(int input, FieldLoc loc) {
     // Movement
     if (input == GameInputs.moveNorth || input == GameInputs.moveEast ||
         input == GameInputs.moveSouth || input == GameInputs.moveWest)
     {
-        MovePlayer(input, x, y);
+        MovePlayer(input, loc);
     }
 };
 
@@ -86,9 +85,14 @@ void UpdateWorld(int input) {
     {
         for (int y = 0; y < fieldSizeY; y++)
         {
-            if (IsPlayerThere(x, y))
+            FieldLoc origin = {
+                .x = x,
+                .y = y,
+            };
+
+            if (IsPlayerThere(origin))
             {
-                UpdatePlayer(input, x, y);
+                UpdatePlayer(input, origin);
                 input = GameInputs.noInput;
             }
         }

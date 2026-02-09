@@ -1,12 +1,14 @@
 #pragma once
 
+#include "world.h"
+
 // ------------------------------------------------------------
 
 // Prototypes
-bool IsPlayerThere(int x, int y);
+bool IsPlayerThere(FieldLoc loc);
 int GetInput(void);
 void ClearWorld(void);
-void MovePlayer(int input, int x, int y);
+void MovePlayer(int input, FieldLoc loc);
 void UpdateGameState(void);
-void UpdatePlayer(int input, int x, int y);
+void UpdatePlayer(int input, FieldLoc loc);
 void UpdateWorld(int input);
