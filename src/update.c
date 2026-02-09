@@ -47,8 +47,12 @@ int GetInput(void) {
     return input;
 };
 
-bool IsPlayerThere(FieldLoc loc) {
-    return World.cells[loc.x][loc.y].entity == &PlayerHero;
+bool IsEntityPresent(FieldLoc loc) {
+    return World.cells[loc.x][loc.y].entity;
+};
+
+EntityType CheckEntityType(FieldLoc loc) {
+    return World.cells[loc.x][loc.y].entity->type;
 };
 
 void MovePlayer(int input, FieldLoc loc) {
@@ -90,10 +94,18 @@ void UpdateWorld(int input) {
                 .y = y,
             };
 
-            if (IsPlayerThere(origin))
+            if (IsEntityPresent(origin))
             {
-                UpdatePlayer(input, origin);
-                input = GameInputs.noInput;
+                switch (CheckEntityType(origin))
+                {
+                case HERO:
+                    UpdatePlayer(input, origin);
+                    input = GameInputs.noInput;
+                    break;
+                
+                default:
+                    break;
+                }
             }
         }
     }

@@ -5,7 +5,8 @@
 // ------------------------------------------------------------
 
 // Prototypes
-bool IsPlayerThere(FieldLoc loc);
+bool IsEntityPresent(FieldLoc loc);
+EntityType CheckEntityType(FieldLoc loc);
 int GetInput(void);
 void ClearWorld(void);
 void MovePlayer(int input, FieldLoc loc);
