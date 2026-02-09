@@ -103,3 +103,5 @@ void UpdateGameState(void) {
         UpdateWorld(input);
     }
 };
+
+// TODO - Add safeguards for preventing player movement (or any entity) off the screen!!
