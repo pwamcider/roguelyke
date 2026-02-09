@@ -58,12 +58,11 @@ typedef struct Field {
 	// Using pointers allows something to be NULL. If it might be NULL sometimes, use a pointer.
 } Field;
 
-// TODO - is there value in the below struct for passing and returning x/y coordinates on the field?
-typedef struct EntLoc
+typedef struct FieldLoc
 {
 	int x;
 	int y;
-} EntLoc;
+} FieldLoc;
 
 
 // ------------------------------------------------------------
