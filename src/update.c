@@ -16,6 +16,14 @@ void ClearWorld(void) {
     }
 };
 
+bool IsEntityPresent(FieldLoc loc) {
+    return World.cells[loc.x][loc.y].entity;
+};
+
+EntityType CheckEntityType(FieldLoc loc) {
+    return World.cells[loc.x][loc.y].entity->type;
+};
+
 int GetInput(void) {
     int input;
 
@@ -47,40 +55,60 @@ int GetInput(void) {
     return input;
 };
 
-bool IsEntityPresent(FieldLoc loc) {
-    return World.cells[loc.x][loc.y].entity;
-};
-
-EntityType CheckEntityType(FieldLoc loc) {
-    return World.cells[loc.x][loc.y].entity->type;
-};
-
-void MovePlayer(int input, FieldLoc loc) {
+FieldLoc FindMoveTarget(int input, FieldLoc origin) {
+    FieldLoc target;
+    
     if (input == GameInputs.moveNorth)
     {
-        World.cells[loc.x][loc.y - 1].entity = &PlayerHero;
+        target.x = origin.x;
+        target.y = origin.y - 1;
+        
     }
     else if (input == GameInputs.moveEast)
     {
-        World.cells[loc.x + 1][loc.y].entity = &PlayerHero;
+        target.x = origin.x + 1;
+        target.y = origin.y;
     }
     else if (input == GameInputs.moveSouth)
     {
-        World.cells[loc.x][loc.y + 1].entity = &PlayerHero;
+        target.x = origin.x;
+        target.y = origin.y + 1;
     }
     else if (input == GameInputs.moveWest)
     {
-        World.cells[loc.x - 1][loc.y].entity = &PlayerHero;
+        target.x = origin.x - 1;
+        target.y = origin.y;
     }
-    World.cells[loc.x][loc.y].entity = NULL;
+    else
+    {
+        target.x = origin.x;
+        target.y = origin.y;
+    }
+
+    return target;
 };
 
-void UpdatePlayer(int input, FieldLoc loc) {
+bool IsMoveLegal(FieldLoc target) {
+    return (target.x > -1 && target.x < fieldSizeX)
+        && (target.y > -1 && target.y < fieldSizeY);
+};
+
+void MovePlayer(FieldLoc origin, FieldLoc target) {
+    World.cells[target.x][target.y].entity = &PlayerHero;
+    World.cells[origin.x][origin.y].entity = NULL;
+};
+
+void UpdatePlayer(int input, FieldLoc origin) {
     // Movement
     if (input == GameInputs.moveNorth || input == GameInputs.moveEast ||
         input == GameInputs.moveSouth || input == GameInputs.moveWest)
     {
-        MovePlayer(input, loc);
+        FieldLoc target = FindMoveTarget(input, origin);
+
+        if (IsMoveLegal(target))
+        {
+            MovePlayer(origin, target);
+        }
     }
 };
 
