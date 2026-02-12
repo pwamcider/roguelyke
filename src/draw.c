@@ -34,7 +34,7 @@ void DrawWorld(void) {
             }
             else
             {
-                switch (World.cells[x][y].type)
+                switch (World.cells[x][y].groundType)
                 {
                 case SOIL:
                     DrawTextEx(gameFont, Ground.soilIcon, target,

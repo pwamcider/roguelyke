@@ -10,7 +10,7 @@ void ClearWorld(void) {
     {
         for (int y = 0; y < fieldSizeY; y++)
         {
-            World.cells[x][y].cellType = GROUND;
+            World.cells[x][y].groundType = SOIL;
             World.cells[x][y].entity = NULL;
         }
     }

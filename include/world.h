@@ -72,7 +72,7 @@ typedef struct GroundVisuals {
 // ------------------------------------------------------------
 
 typedef struct Cell {
-	GroundType type;
+	GroundType groundType;
 	Entity* entity;
 } Cell;
 
