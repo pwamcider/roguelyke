@@ -18,38 +18,43 @@ void DrawWorld(void) {
             target.x = ((float)x * buffer) + GameView.originPoint.x;
             target.y = ((float)y * buffer) + GameView.originPoint.y;
 
+            Color localColor = WHITE;
+            const char* localIcon = NULL;
+
             if (World.cells[x][y].entity != NULL)
             {
                 switch (World.cells[x][y].entity->type)
                 {
                 case HERO:
-                    DrawTextEx(gameFont, PlayerHero.data.hero.icon,
-                               target, GameText.size,
-                               GameText.spacing, PlayerHero.data.hero.color);
+                    localIcon = PlayerHero.data.hero.icon;
+                    localColor = PlayerHero.data.hero.color;
                     break;
-                
                 default:
                     break;
                 }
             }
+
             else
             {
                 switch (World.cells[x][y].groundType)
                 {
                 case SOIL:
-                    DrawTextEx(gameFont, Ground.soilIcon, target,
-                               GameText.size, GameText.spacing, Ground.soilColor);
+                    localColor = Ground.soilColor;
+                    localIcon = Ground.soilIcon;
                     break;
 
                 case GRASS:
-                    DrawTextEx(gameFont, Ground.grassIcon, target,
-                               GameText.size, GameText.spacing, Ground.grassColor);
+                    localColor = Ground.grassColor;
+                    localIcon = Ground.grassIcon;
                     break;
                 
                 default:
                     break;
                 }
             }
+            
+            DrawTextEx(gameFont, localIcon, target,
+                       GameText.size, GameText.spacing, localColor);
         }
     }
 };
