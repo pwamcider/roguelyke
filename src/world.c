@@ -1,10 +1,20 @@
 #include "world.h"
-#include "raylib.h"
 
 // ------------------------------------------------------------
 
 Entity PlayerHero = {
     .type = HERO,
+    .data.hero = {
+        .icon = "@",
+        .color = WHITE,
+    },
+};
+
+GroundVisuals Ground = {
+    .grassColor = GREEN,
+    .grassIcon = ",,",
+    .soilColor = BROWN,
+    .soilIcon = ".",
 };
 
 Field World;

@@ -1,11 +1,13 @@
 #pragma once
 
+#include "raylib.h"
+
 // ------------------------------------------------------------
 
 #define fieldSizeX 30
 #define fieldSizeY 30
 
-//
+// Game Entity Types
 // ------------------------------------------------------------
 
 typedef enum EntityType {
@@ -15,9 +17,19 @@ typedef enum EntityType {
 	INANIMATE,
 } EntityType;
 
+// Hero Struct
+// ------------------------------------------------------------
+
 typedef struct Hero {
-	// TODO
+	// Attributes
+
+	// Visual
+	const char* icon;
+	Color color;
 } Hero;
+
+// Game Structs
+// ------------------------------------------------------------
 
 typedef struct Monster {
 	// TODO
@@ -32,8 +44,6 @@ typedef struct Inanimate {
 } Inanimate;
 
 typedef struct Entity {
-	// TODO - Consider removal of below char*; relocate to a draw function.
-	const char* icon;
 	union {
 		Hero hero;
 		Monster monster;
@@ -43,13 +53,26 @@ typedef struct Entity {
 	EntityType type;
 } Entity;
 
-typedef enum CellType {
-	// Consider if a WALL type is more valuable here than using the Inanimate struct to define walls.
-	GROUND,
-} CellType;
+// Walkable
+// ------------------------------------------------------------
+
+typedef enum GroundType {
+	GRASS,
+	SOIL,
+} GroundType;
+
+typedef struct GroundVisuals {
+	Color grassColor;
+	Color soilColor;
+	const char* grassIcon;
+	const char* soilIcon;
+} GroundVisuals;
+
+// World Structs
+// ------------------------------------------------------------
 
 typedef struct Cell {
-	CellType cellType;
+	GroundType type;
 	Entity* entity;
 } Cell;
 
@@ -64,11 +87,12 @@ typedef struct FieldLoc
 	int y;
 } FieldLoc;
 
-
+// Declarations
 // ------------------------------------------------------------
 
 extern Entity PlayerHero;
 extern Field World;
+extern GroundVisuals Ground;
 
 // ------------------------------------------------------------
 
