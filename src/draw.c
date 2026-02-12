@@ -11,10 +11,6 @@ void DrawWorld(void) {
     float buffer = GameView.cellBuffer;
     Vector2 target;
 
-    // TODO - Better organize icons for primary drawing function.
-    const char* groundIcon = ".";
-    const char* heroIcon = "@";
-
     for (int x = 0; x < fieldSizeX; x++)
     {
         for (int y = 0; y < fieldSizeY; y++)
@@ -24,11 +20,35 @@ void DrawWorld(void) {
 
             if (World.cells[x][y].entity != NULL)
             {
-                DrawTextEx(gameFont, heroIcon, target, GameText.size, GameText.spacing, WHITE);
+                switch (World.cells[x][y].entity->type)
+                {
+                case HERO:
+                    DrawTextEx(gameFont, PlayerHero.data.hero.icon,
+                               target, GameText.size,
+                               GameText.spacing, PlayerHero.data.hero.color);
+                    break;
+                
+                default:
+                    break;
+                }
             }
             else
             {
-                DrawTextEx(gameFont, groundIcon, target, GameText.size, GameText.spacing, WHITE);
+                switch (World.cells[x][y].type)
+                {
+                case SOIL:
+                    DrawTextEx(gameFont, Ground.soilIcon, target,
+                               GameText.size, GameText.spacing, Ground.soilColor);
+                    break;
+
+                case GRASS:
+                    DrawTextEx(gameFont, Ground.grassIcon, target,
+                               GameText.size, GameText.spacing, Ground.grassColor);
+                    break;
+                
+                default:
+                    break;
+                }
             }
         }
     }
