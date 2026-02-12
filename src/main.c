@@ -17,6 +17,9 @@ int main(void)
 
 	World.cells[20][20].entity = &PlayerHero;
 
+	World.cells[5][5].type = GRASS;
+	World.cells[12][11].type = GRASS;
+
 	while (!WindowShouldClose())
 	{
 		BeginDrawing();
