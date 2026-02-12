@@ -19,7 +19,7 @@ void DrawWorld(void) {
             target.y = ((float)y * buffer) + GameView.originPoint.y;
 
             Color localColor = WHITE;
-            const char* localIcon = NULL;
+            const char* localIcon = " ";
 
             if (World.cells[x][y].entity != NULL)
             {
@@ -52,7 +52,7 @@ void DrawWorld(void) {
                     break;
                 }
             }
-            
+
             DrawTextEx(gameFont, localIcon, target,
                        GameText.size, GameText.spacing, localColor);
         }
