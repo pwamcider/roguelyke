@@ -1,4 +1,5 @@
 #include "draw.h"
+#include "randomization.h"
 #include "raylib.h"
 #include "resources.h"
 #include "setup.h"
@@ -15,7 +16,10 @@ int main(void)
 
 	ClearWorld();
 
-	World.cells[20][20].entity = &PlayerHero;
+	SetRandomSeed(GameSeed);
+
+	World.cells[GetRandomValue(WorldRange.min_x, WorldRange.max_x)]
+			   [GetRandomValue(WorldRange.min_y, WorldRange.max_y)].entity = &PlayerHero;
 
 	World.cells[5][5].groundType = GRASS;
 	World.cells[12][11].groundType = GRASS;
