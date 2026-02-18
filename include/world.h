@@ -87,19 +87,11 @@ typedef struct FieldLoc
 	int y;
 } FieldLoc;
 
-typedef struct FieldRange {
-	int min_x;
-	int max_x;
-	int min_y;
-	int max_y;
-} FieldRange;
-
 // Declarations
 // ------------------------------------------------------------
 
 extern Entity PlayerHero;
 extern Field World;
-extern FieldRange WorldRange;
 extern GroundVisuals Ground;
 
 // ------------------------------------------------------------

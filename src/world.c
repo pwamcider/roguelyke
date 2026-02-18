@@ -18,10 +18,3 @@ GroundVisuals Ground = {
 };
 
 Field World;
-
-FieldRange WorldRange = {
-    .min_x = 0,
-    .max_x = (fieldSizeX - 1),
-    .min_y = 0,
-    .max_y = (fieldSizeY - 1),
-};
