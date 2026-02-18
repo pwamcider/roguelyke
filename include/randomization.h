@@ -3,8 +3,18 @@
 // Declarations
 // ------------------------------------------------------------
 
+typedef struct LocRange {
+	int min_x;
+	int max_x;
+	int min_y;
+	int max_y;
+} LocRange;
+
+extern LocRange ValidRange;
 extern unsigned int GameSeed;
 
 // Function Prototypes
 // ------------------------------------------------------------
 
+int GetRandomX(void);
+int GetRandomY(void);
