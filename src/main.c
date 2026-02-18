@@ -18,8 +18,7 @@ int main(void)
 
 	SetRandomSeed(GameSeed);
 
-	World.cells[GetRandomValue(WorldRange.min_x, WorldRange.max_x)]
-			   [GetRandomValue(WorldRange.min_y, WorldRange.max_y)].entity = &PlayerHero;
+	World.cells[GetRandomX()][GetRandomY()].entity = &PlayerHero;
 
 	World.cells[5][5].groundType = GRASS;
 	World.cells[12][11].groundType = GRASS;
