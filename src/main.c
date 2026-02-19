@@ -14,14 +14,20 @@ int main(void)
 
 	LoadResources();
 
-	ClearWorld();
-
 	SetRandomSeed(GameSeed);
 
-	World.cells[GetRandomX()][GetRandomY()].entity = &PlayerHero;
+	ClearWorld();
 
-	World.cells[5][5].groundType = GRASS;
-	World.cells[12][11].groundType = GRASS;
+	GenerateGrass();
+
+	PlacePlayerRandom();
+
+	FieldLoc testingLoc = {
+		.x = 29,
+		.y = 29,
+	};
+
+	CheckNearbyCells(testingLoc);
 
 	while (!WindowShouldClose())
 	{
