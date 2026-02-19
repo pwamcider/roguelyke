@@ -1,5 +1,5 @@
 #include "draw.h"
-#include "randomization.h"
+#include "generation.h"
 #include "raylib.h"
 #include "resources.h"
 #include "setup.h"
