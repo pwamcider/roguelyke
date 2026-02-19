@@ -10,6 +10,11 @@ typedef struct LocRange {
 	int max_y;
 } LocRange;
 
+typedef struct GroundGenValues {
+	int grassFreq;
+} GroundGenValues;
+
+extern GroundGenValues GroundGen;
 extern LocRange ValidRange;
 extern unsigned int GameSeed;
 
@@ -18,3 +23,5 @@ extern unsigned int GameSeed;
 
 int GetRandomX(void);
 int GetRandomY(void);
+void PlacePlayerRandom(void);
+void GenerateGrass(void);
