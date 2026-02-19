@@ -88,7 +88,7 @@ FieldLoc FindMoveTarget(int input, FieldLoc origin) {
     return target;
 };
 
-bool IsMoveLegal(FieldLoc target) {
+bool IsTargetLegal(FieldLoc target) {
     return (target.x > -1 && target.x < fieldSizeX)
         && (target.y > -1 && target.y < fieldSizeY);
 };
@@ -105,7 +105,7 @@ void UpdatePlayer(int input, FieldLoc origin) {
     {
         FieldLoc target = FindMoveTarget(input, origin);
 
-        if (IsMoveLegal(target))
+        if (IsTargetLegal(target))
         {
             MovePlayer(origin, target);
         }
@@ -146,4 +146,27 @@ void UpdateGameState(void) {
     {
         UpdateWorld(input);
     }
+};
+
+// TODO - current function also checks the origin
+void CheckNearbyCells(FieldLoc origin) {    
+    int i = 0;
+
+    for (int x = (origin.x - 1); x <= (origin.x + 1); x++)
+    {
+        for (int y = (origin.y - 1); y <= (origin.y + 1); y++)
+        {
+            FieldLoc targetCell = {
+                .x = x,
+                .y = y,
+            };
+
+            if (IsTargetLegal(targetCell))
+            {
+                i++;
+            }
+        }
+    }
+
+    printf("Legal cells: %i", i);
 };
