@@ -90,7 +90,6 @@ FieldLoc FindMoveTarget(int input, FieldLoc origin) {
     return target;
 };
 
-// TODO - consider where to put code that ensures one entity can't move on top of another entity.
 bool IsTargetLegal(FieldLoc target) {
     return (target.x > -1 && target.x < fieldSizeX)
         && (target.y > -1 && target.y < fieldSizeY);

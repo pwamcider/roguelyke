@@ -1,13 +1,8 @@
 #include "draw.h"
-#include "generation.h"
 #include "raylib.h"
 #include "resources.h"
 #include "setup.h"
 #include "update.h"
-#include "world.h"
-
-// Possibly temp includes:
-#include "inanimate.h"
 
 // ------------------------------------------------------------
 
@@ -17,22 +12,7 @@ int main(void)
 
 	LoadResources();
 
-	SetRandomSeed(GameSeed);
-
-	ClearWorld();
-
-	GenerateGrass();
-
-	PlacePlayerRandom();
-
-	FieldLoc testingLoc = {
-		.x = 15,
-		.y = 15,
-	};
-
-	World.cells[2][2].entity = &OakTree;
-
-	CheckNearbyCells(testingLoc);
+	SetupGameState();
 
 	while (!WindowShouldClose())
 	{
