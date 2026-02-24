@@ -27,6 +27,7 @@ EntityType CheckEntityType(FieldLoc loc) {
 int GetInput(void) {
     int input;
 
+    // Direction Keys ------------------------------------------------------------
     if (IsKeyPressed(GameInputs.keyMoveNorth))
     {
         input = GameInputs.moveNorth;
@@ -47,6 +48,7 @@ int GetInput(void) {
     {
         input = GameInputs.wait;
     }
+    // No Input ------------------------------------------------------------
     else
     {
         input = GameInputs.noInput;
@@ -88,6 +90,7 @@ FieldLoc FindMoveTarget(int input, FieldLoc origin) {
     return target;
 };
 
+// TODO - consider where to put code that ensures one entity can't move on top of another entity.
 bool IsTargetLegal(FieldLoc target) {
     return (target.x > -1 && target.x < fieldSizeX)
         && (target.y > -1 && target.y < fieldSizeY);
@@ -99,13 +102,14 @@ void MovePlayer(FieldLoc origin, FieldLoc target) {
 };
 
 void UpdatePlayer(int input, FieldLoc origin) {
-    // Movement
+    // Directional Inputs
     if (input == GameInputs.moveNorth || input == GameInputs.moveEast ||
         input == GameInputs.moveSouth || input == GameInputs.moveWest)
     {
         FieldLoc target = FindMoveTarget(input, origin);
 
-        if (IsTargetLegal(target))
+        // Move Player
+        if (IsTargetLegal(target) && !IsEntityPresent(target))
         {
             MovePlayer(origin, target);
         }
