@@ -40,7 +40,11 @@ typedef struct Item {
 } Item;
 
 typedef struct Inanimate {
-	// TODO
+	// Attributes
+	
+	// Visual
+	const char* icon;
+	Color color;
 } Inanimate;
 
 typedef struct Entity {
@@ -106,5 +110,3 @@ int GetHealth(Entity* entity) {
 	
 };
 */
-
-// TODO - consider a ReturnIcon function where all the char icons live in one place; using a switch.
