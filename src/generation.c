@@ -4,7 +4,7 @@
 
 // ------------------------------------------------------------
 
-unsigned int GameSeed = 21323;
+unsigned int GameSeed = 486486;
 
 LocRange ValidRange = {
     .min_x = 0,
@@ -14,7 +14,7 @@ LocRange ValidRange = {
 };
 
 GroundGenValues GroundGen = {
-    .grassFreq = 15,
+    .grassFreq = 20,
 };
 
 int GetRandomX(void) {
