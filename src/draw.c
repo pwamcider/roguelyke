@@ -1,4 +1,5 @@
 #include "draw.h"
+#include "inanimate.h"
 #include "raylib.h"
 #include "resources.h"
 #include "stdio.h"
@@ -28,6 +29,11 @@ void DrawWorld(void) {
                 case HERO:
                     localIcon = PlayerHero.data.hero.icon;
                     localColor = PlayerHero.data.hero.color;
+                    break;
+                case INANIMATE:
+                    // TODO - remove hard coding of oaktree; replace with functions that fetch the subtype.
+                    localIcon = OakTree.data.inanimate.icon;
+                    localColor = OakTree.data.inanimate.color;
                     break;
                 default:
                     break;
