@@ -6,6 +6,9 @@
 #include "update.h"
 #include "world.h"
 
+// Possibly temp includes:
+#include "inanimate.h"
+
 // ------------------------------------------------------------
 
 int main(void)
@@ -23,9 +26,11 @@ int main(void)
 	PlacePlayerRandom();
 
 	FieldLoc testingLoc = {
-		.x = 29,
-		.y = 29,
+		.x = 15,
+		.y = 15,
 	};
+
+	World.cells[2][2].entity = &OakTree;
 
 	CheckNearbyCells(testingLoc);
 
