@@ -1,10 +1,12 @@
 #include "generation.h"
 #include "raylib.h"
+#include "stdio.h"
+#include "update.h"
 #include "world.h"
 
 // ------------------------------------------------------------
 
-unsigned int GameSeed = 486486;
+unsigned int GameSeed = 5;
 
 LocRange ValidRange = {
     .min_x = 0,
@@ -27,7 +29,20 @@ int GetRandomY(void) {
 
 // TODO - ensure this function does not place player on top of other entity.
 void PlacePlayerRandom(void) {
-    World.cells[GetRandomX()][GetRandomY()].entity = &PlayerHero;
+    bool validTarget = false;
+    
+    FieldLoc target;
+
+    do
+    {
+        target.x = GetRandomX();
+        target.y = GetRandomY();
+
+        validTarget = !IsEntityPresent(target);
+
+    } while (!validTarget);
+
+    World.cells[target.x][target.y].entity = &PlayerHero;
 };
 
 // TODO - refine this generation to favor "patches" of grass over truly random placement.
