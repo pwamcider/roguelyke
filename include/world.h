@@ -47,6 +47,9 @@ typedef struct Inanimate {
 	Color color;
 } Inanimate;
 
+// TODO - move icon and color into entity struct
+// all entities will have these, so no need to repeat across different types.
+
 typedef struct Entity {
 	union {
 		Hero hero;
