@@ -112,6 +112,11 @@ void UpdatePlayer(int input, FieldLoc origin) {
         {
             MovePlayer(origin, target);
         }
+        // Action
+        else if (IsTargetLegal(target) && IsEntityPresent(target))
+        {
+            // TODO - Combat goes here lol
+        }
     }
 };
 
