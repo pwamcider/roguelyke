@@ -27,13 +27,13 @@ void DrawWorld(void) {
                 switch (World.cells[x][y].entity->type)
                 {
                 case HERO:
-                    localIcon = PlayerHero.data.hero.icon;
-                    localColor = PlayerHero.data.hero.color;
+                    localIcon = PlayerHero.icon;
+                    localColor = PlayerHero.color;
                     break;
                 case INANIMATE:
                     // TODO - remove hard coding of oaktree; replace with functions that fetch the subtype.
-                    localIcon = OakTree.data.inanimate.icon;
-                    localColor = OakTree.data.inanimate.color;
+                    localIcon = OakTree.icon;
+                    localColor = OakTree.color;
                     break;
                 default:
                     break;

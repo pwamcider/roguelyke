@@ -22,10 +22,6 @@ typedef enum EntityType {
 
 typedef struct Hero {
 	// Attributes
-
-	// Visual
-	const char* icon;
-	Color color;
 } Hero;
 
 // Game Structs
@@ -41,10 +37,6 @@ typedef struct Item {
 
 typedef struct Inanimate {
 	// Attributes
-	
-	// Visual
-	const char* icon;
-	Color color;
 } Inanimate;
 
 // TODO - move icon and color into entity struct
@@ -58,6 +50,10 @@ typedef struct Entity {
 		Inanimate inanimate;
 	} data;
 	EntityType type;
+
+	// Visuals
+	const char* icon;
+	Color color;
 } Entity;
 
 // Walkable

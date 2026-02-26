@@ -4,10 +4,8 @@
 
 Entity PlayerHero = {
     .type = HERO,
-    .data.hero = {
-        .icon = "@",
-        .color = WHITE,
-    },
+    .icon = "@",
+    .color = WHITE,
 };
 
 GroundVisuals Ground = {

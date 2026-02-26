@@ -4,8 +4,6 @@
 
 Entity OakTree = {
     .type = INANIMATE,
-    .data.inanimate = {
-        .icon = "T",
-        .color = GREEN,
-    },
+    .icon = "T",
+    .color = GREEN,
 };

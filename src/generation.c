@@ -6,7 +6,7 @@
 
 // ------------------------------------------------------------
 
-unsigned int GameSeed = 5;
+unsigned int GameSeed = 6;
 
 LocRange ValidRange = {
     .min_x = 0,
