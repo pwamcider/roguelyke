@@ -5,24 +5,8 @@
 
 // ------------------------------------------------------------
 
-void ClearWorld(void) {
-    for (int x = 0; x < fieldSizeX; x++)
-    {
-        for (int y = 0; y < fieldSizeY; y++)
-        {
-            World.cells[x][y].groundType = SOIL;
-            World.cells[x][y].entity = NULL;
-        }
-    }
-};
-
-bool IsEntityPresent(FieldLoc loc) {
-    return World.cells[loc.x][loc.y].entity;
-};
-
-EntityType CheckEntityType(FieldLoc loc) {
-    return World.cells[loc.x][loc.y].entity->type;
-};
+// Player Control
+// ------------------------------------------------------------
 
 int GetInput(void) {
     int input;
@@ -90,10 +74,47 @@ FieldLoc FindMoveTarget(int input, FieldLoc origin) {
     return target;
 };
 
+// Support Functions
+// ------------------------------------------------------------
+
+bool IsEntityPresent(FieldLoc loc) {
+    return World.cells[loc.x][loc.y].entity;
+};
+
+EntityType CheckEntityType(FieldLoc loc) {
+    return World.cells[loc.x][loc.y].entity->type;
+};
+
 bool IsTargetLegal(FieldLoc target) {
     return (target.x > -1 && target.x < fieldSizeX)
         && (target.y > -1 && target.y < fieldSizeY);
 };
+
+// TODO - current function also checks the origin
+void CheckNearbyCells(FieldLoc origin) {    
+    int i = 0;
+
+    for (int x = (origin.x - 1); x <= (origin.x + 1); x++)
+    {
+        for (int y = (origin.y - 1); y <= (origin.y + 1); y++)
+        {
+            FieldLoc targetCell = {
+                .x = x,
+                .y = y,
+            };
+
+            if (IsTargetLegal(targetCell))
+            {
+                i++;
+            }
+        }
+    }
+
+    printf("Legal cells: %i", i);
+};
+
+// Player Actions
+// ------------------------------------------------------------
 
 void MovePlayer(FieldLoc origin, FieldLoc target) {
     World.cells[target.x][target.y].entity = &PlayerHero;
@@ -119,6 +140,9 @@ void UpdatePlayer(int input, FieldLoc origin) {
         }
     }
 };
+
+// World Updates
+// ------------------------------------------------------------
 
 void UpdateWorld(int input) {
     for (int x = 0; x < fieldSizeX; x++)
@@ -156,25 +180,13 @@ void UpdateGameState(void) {
     }
 };
 
-// TODO - current function also checks the origin
-void CheckNearbyCells(FieldLoc origin) {    
-    int i = 0;
-
-    for (int x = (origin.x - 1); x <= (origin.x + 1); x++)
+void ClearWorld(void) {
+    for (int x = 0; x < fieldSizeX; x++)
     {
-        for (int y = (origin.y - 1); y <= (origin.y + 1); y++)
+        for (int y = 0; y < fieldSizeY; y++)
         {
-            FieldLoc targetCell = {
-                .x = x,
-                .y = y,
-            };
-
-            if (IsTargetLegal(targetCell))
-            {
-                i++;
-            }
+            World.cells[x][y].groundType = SOIL;
+            World.cells[x][y].entity = NULL;
         }
     }
-
-    printf("Legal cells: %i", i);
 };

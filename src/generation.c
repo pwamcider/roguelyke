@@ -27,7 +27,7 @@ int GetRandomY(void) {
     return GetRandomValue(ValidRange.min_y, ValidRange.max_y);
 };
 
-// TODO - ensure this function does not place player on top of other entity.
+// TODO - Consider updating this function to be PlaceEntityRandom so it can also place whatever?
 void PlacePlayerRandom(void) {
     bool validTarget = false;
     
