@@ -41,7 +41,7 @@ int GetInput(void) {
     return input;
 };
 
-FieldLoc FindMoveTarget(int input, FieldLoc origin) {
+FieldLoc FindActionTarget(int input, FieldLoc origin) {
     FieldLoc target;
     
     if (input == GameInputs.moveNorth)
@@ -126,7 +126,7 @@ void UpdatePlayer(int input, FieldLoc origin) {
     if (input == GameInputs.moveNorth || input == GameInputs.moveEast ||
         input == GameInputs.moveSouth || input == GameInputs.moveWest)
     {
-        FieldLoc target = FindMoveTarget(input, origin);
+        FieldLoc target = FindActionTarget(input, origin);
 
         // Move Player
         if (IsTargetLegal(target) && !IsEntityPresent(target))
