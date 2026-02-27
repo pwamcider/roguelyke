@@ -23,12 +23,20 @@ typedef struct Text {
 typedef struct Inputs {
     int keyMoveNorth;
     int moveNorth;
+    int keyMoveNorthEast;
+    int moveNorthEast;
     int keyMoveEast;
     int moveEast;
+    int keyMoveSouthEast;
+    int moveSouthEast;
     int keyMoveSouth;
     int moveSouth;
+    int keyMoveSouthWest;
+    int moveSouthWest;
     int keyMoveWest;
     int moveWest;
+    int keyMoveNorthWest;
+    int moveNorthWest;
     int keyWait;
     int wait;
     int noInput;

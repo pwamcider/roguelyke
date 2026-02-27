@@ -16,17 +16,33 @@ int GetInput(void) {
     {
         input = GameInputs.moveNorth;
     }
+    else if (IsKeyPressed(GameInputs.keyMoveNorthEast))
+    {
+        input = GameInputs.moveNorthEast;
+    }
     else if (IsKeyPressed(GameInputs.keyMoveEast))
     {
         input = GameInputs.moveEast;
+    }
+    else if (IsKeyPressed(GameInputs.keyMoveSouthEast))
+    {
+        input = GameInputs.moveSouthEast;
     }
     else if (IsKeyPressed(GameInputs.keyMoveSouth))
     {
         input = GameInputs.moveSouth;
     }
+    else if (IsKeyPressed(GameInputs.keyMoveSouthWest))
+    {
+        input = GameInputs.moveSouthWest;
+    }
     else if (IsKeyPressed(GameInputs.keyMoveWest))
     {
         input = GameInputs.moveWest;
+    }
+    else if (IsKeyPressed(GameInputs.keyMoveNorthWest))
+    {
+        input = GameInputs.moveNorthWest;
     }
     else if (IsKeyPressed(GameInputs.keyWait))
     {
@@ -48,22 +64,41 @@ FieldLoc FindActionTarget(int input, FieldLoc origin) {
     {
         target.x = origin.x;
         target.y = origin.y - 1;
-        
+    }
+    else if (input == GameInputs.moveNorthEast)
+    {
+        target.x = origin.x + 1;
+        target.y = origin.y - 1;
     }
     else if (input == GameInputs.moveEast)
     {
         target.x = origin.x + 1;
         target.y = origin.y;
     }
+    else if (input == GameInputs.moveSouthEast)
+    {
+        target.x = origin.x + 1;
+        target.y = origin.y + 1;
+    }
     else if (input == GameInputs.moveSouth)
     {
         target.x = origin.x;
+        target.y = origin.y + 1;
+    }
+    else if (input == GameInputs.moveSouthWest)
+    {
+        target.x = origin.x - 1;
         target.y = origin.y + 1;
     }
     else if (input == GameInputs.moveWest)
     {
         target.x = origin.x - 1;
         target.y = origin.y;
+    }
+    else if (input == GameInputs.moveNorthWest)
+    {
+        target.x = origin.x - 1;
+        target.y = origin.y - 1;
     }
     else
     {
@@ -124,7 +159,9 @@ void MovePlayer(FieldLoc origin, FieldLoc target) {
 void UpdatePlayer(int input, FieldLoc origin) {
     // Directional Inputs
     if (input == GameInputs.moveNorth || input == GameInputs.moveEast ||
-        input == GameInputs.moveSouth || input == GameInputs.moveWest)
+        input == GameInputs.moveSouth || input == GameInputs.moveWest ||
+        input == GameInputs.moveNorthEast || input == GameInputs.moveSouthEast ||
+        input == GameInputs.moveSouthWest || input == GameInputs.moveNorthWest)
     {
         FieldLoc target = FindActionTarget(input, origin);
 
