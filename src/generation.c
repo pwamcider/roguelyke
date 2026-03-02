@@ -3,10 +3,11 @@
 #include "stdio.h"
 #include "update.h"
 #include "world.h"
+#include "time.h"
 
 // ------------------------------------------------------------
 
-unsigned int GameSeed = 6;
+unsigned int GameSeed;
 
 LocRange ValidRange = {
     .min_x = 0,
@@ -17,6 +18,10 @@ LocRange ValidRange = {
 
 GroundGenValues GroundGen = {
     .grassFreq = 20,
+};
+
+void AssignGameSeed(void) {
+    GameSeed = time(NULL);
 };
 
 int GetRandomX(void) {

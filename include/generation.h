@@ -23,5 +23,6 @@ extern unsigned int GameSeed;
 
 int GetRandomX(void);
 int GetRandomY(void);
-void PlacePlayerRandom(void);
 void GenerateGrass(void);
+void PlacePlayerRandom(void);
+void AssignGameSeed(void);

@@ -30,6 +30,8 @@ void RunTests(void) {
 }
 
 void SetupGameState(void) {
+    AssignGameSeed();
+
     SetRandomSeed(GameSeed);
 
 	ClearWorld();
