@@ -21,7 +21,11 @@ GroundGenValues GroundGen = {
 };
 
 void AssignGameSeed(void) {
+    // Dynamic RNG
     GameSeed = time(NULL);
+
+    // Manual Input:
+    // GameSeed = 10;
 };
 
 int GetRandomX(void) {
