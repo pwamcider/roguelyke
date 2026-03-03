@@ -112,12 +112,12 @@ FieldLoc FindActionTarget(int input, FieldLoc origin) {
 // Support Functions
 // ------------------------------------------------------------
 
-bool IsEntityPresent(FieldLoc loc) {
-    return World.cells[loc.x][loc.y].entity;
+bool IsEntityPresent(FieldLoc target) {
+    return World.cells[target.x][target.y].entity;
 };
 
-EntityType CheckEntityType(FieldLoc loc) {
-    return World.cells[loc.x][loc.y].entity->type;
+EntityType CheckEntityType(FieldLoc target) {
+    return World.cells[target.x][target.y].entity->type;
 };
 
 bool IsTargetLegal(FieldLoc target) {

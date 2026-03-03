@@ -5,9 +5,9 @@
 // ------------------------------------------------------------
 
 // Function Prototypes
-bool IsEntityPresent(FieldLoc loc);
+bool IsEntityPresent(FieldLoc target);
 bool IsTargetLegal(FieldLoc target);
-EntityType CheckEntityType(FieldLoc loc);
+EntityType CheckEntityType(FieldLoc target);
 FieldLoc FindActionTarget(int input, FieldLoc origin);
 int GetInput(void);
 void CheckNearbyCells(FieldLoc origin);
