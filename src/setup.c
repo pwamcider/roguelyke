@@ -1,5 +1,5 @@
+#include "creatures.h"
 #include "generation.h"
-#include "inanimate.h"
 #include "raylib.h"
 #include "setup.h"
 #include "ui.h"

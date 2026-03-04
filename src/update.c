@@ -1,3 +1,4 @@
+#include "combat.h"
 #include "raylib.h"
 #include "stdio.h"
 #include "ui.h"
@@ -173,7 +174,7 @@ void UpdatePlayer(int input, FieldLoc origin) {
         // Action
         else if (IsTargetLegal(target) && IsEntityPresent(target))
         {
-            // TODO - Combat goes here lol
+            RunAction(target);
         }
     }
 };

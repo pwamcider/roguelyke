@@ -12,7 +12,7 @@
 
 typedef enum EntityType {
 	HERO,
-	MONSTER,
+	CREATURE,
 	ITEM,
 	INANIMATE,
 } EntityType;
@@ -22,27 +22,32 @@ typedef enum EntityType {
 
 typedef struct Hero {
 	// Attributes
+	int health;
+	int strength;
+	int dex;
 } Hero;
 
 // Game Structs
 // ------------------------------------------------------------
 
-typedef struct Monster {
-	// TODO
-} Monster;
+typedef struct Creature {
+	// Attributes
+	int health;
+	int dodge;
+} Creature;
 
 typedef struct Item {
 	// TODO
 } Item;
 
 typedef struct Inanimate {
-	// Attributes
+	// TODO
 } Inanimate;
 
 typedef struct Entity {
 	union {
 		Hero hero;
-		Monster monster;
+		Creature creature;
 		Item item;
 		Inanimate inanimate;
 	} data;
