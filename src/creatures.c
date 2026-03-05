@@ -8,6 +8,6 @@ Entity OakTree = {
     .color = GREEN,
     .data.creature = {
         .health = 30,
-        .dodge = 1,
+        .dodge = 15,
     }
 };
