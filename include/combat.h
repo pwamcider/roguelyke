@@ -7,8 +7,9 @@
 // Function Prototypes
 // ------------------------------------------------------------
 
-void RunAction(FieldLoc target);
+bool RollForHit(Entity* entity);
+Entity* GetEntity(FieldLoc target);
+int GetCreatureDodge(Entity* entity);
 int GetPlayerDex(void);
-int GetCreatureDodge(FieldLoc target);
-bool RollForHit(void);
 int RollD20(void);
+void RunAction(FieldLoc target);
