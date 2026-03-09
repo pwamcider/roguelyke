@@ -1,6 +1,4 @@
-#include "creatures.h"
 #include "draw.h"
-#include "inanimate.h"
 #include "raylib.h"
 #include "resources.h"
 #include "stdio.h"
@@ -32,9 +30,8 @@ void DrawWorld(void) {
                     localColor = PlayerHero.color;
                     break;
                 case CREATURE:
-                    // TODO - remove hard coding of oaktree; replace with functions that fetch the subtype.
-                    localIcon = OakTree.icon;
-                    localColor = OakTree.color;
+                    localIcon = World.cells[x][y].entity->icon;
+                    localColor = World.cells[x][y].entity->color;
                     break;
                 default:
                     break;
