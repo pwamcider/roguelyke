@@ -9,6 +9,7 @@ Entity PlayerHero = {
     .data.hero = {
         // Attributes
         .health = 10,
+        .strength = 5,
         .dex = 4,
     }
 };

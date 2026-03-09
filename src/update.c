@@ -1,4 +1,4 @@
-#include "combat.h"
+#include "actions.h"
 #include "raylib.h"
 #include "stdio.h"
 #include "ui.h"
@@ -204,7 +204,9 @@ void UpdateWorld(int input) {
                     UpdatePlayer(input, origin);
                     input = GameInputs.noInput;
                     break;
-                
+                case CREATURE:
+                    // TODO - creature AI here lol
+                    break;
                 default:
                     break;
                 }
