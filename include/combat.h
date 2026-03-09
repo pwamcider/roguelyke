@@ -8,7 +8,6 @@
 // ------------------------------------------------------------
 
 bool RollForHit(Entity* entity);
-Entity* GetEntity(FieldLoc target);
 int GetCreatureDodge(Entity* entity);
 int GetPlayerDex(void);
 int RollD20(void);

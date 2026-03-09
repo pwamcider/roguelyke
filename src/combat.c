@@ -14,10 +14,6 @@ int GetPlayerDex(void) {
 // Creature Attribute Fetching
 // ------------------------------------------------------------
 
-Entity* GetEntity(FieldLoc target) {
-    return World.cells[target.x][target.y].entity;
-};
-
 int GetCreatureDodge(Entity* entity) {
     return entity->data.creature.dodge;
 };

@@ -121,6 +121,10 @@ EntityType CheckEntityType(FieldLoc target) {
     return World.cells[target.x][target.y].entity->type;
 };
 
+Entity* GetEntity(FieldLoc target) {
+    return World.cells[target.x][target.y].entity;
+};
+
 bool IsTargetLegal(FieldLoc target) {
     return (target.x > -1 && target.x < fieldSizeX)
         && (target.y > -1 && target.y < fieldSizeY);
