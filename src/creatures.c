@@ -2,6 +2,7 @@
 
 // ------------------------------------------------------------
 
+// TODO - make the tree less dodgy.
 Entity OakTree = {
     .type = CREATURE,
     .icon = "T",
