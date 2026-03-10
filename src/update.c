@@ -150,7 +150,7 @@ void CheckNearbyCells(FieldLoc origin) {
         }
     }
 
-    printf("Legal cells: %i", i);
+    printf("Legal cells: %i\n", i);
 };
 
 // Player Actions
