@@ -15,6 +15,7 @@ LocRange ValidRange = {
     .max_x = (fieldSizeX - 1),
     .min_y = 0,
     .max_y = (fieldSizeY - 1),
+    .maxCells = (fieldSizeX * fieldSizeY) - 1,
 };
 
 // Generation Support Functions
@@ -36,27 +37,47 @@ int GetRandomY(void) {
     return GetRandomValue(ValidRange.min_y, ValidRange.max_y);
 };
 
-// Player Generation
-// ------------------------------------------------------------
+// TODO - build in failsafe below in case every cell is occupied by an entity
+FieldLoc FindValidLoc(void) {
+    bool validLoc = false;
+    int attempts = 0;
 
-// TODO - Consider updating this function to be PlaceEntityRandom so it can also place whatever?
-
-// TODO - Create a "find validloc" function based off the below that can run in a loop!!
-void PlacePlayerRandom(void) {
-    bool validTarget = false;
-    
-    FieldLoc target;
+    FieldLoc loc;
 
     do
     {
-        target.x = GetRandomX();
-        target.y = GetRandomY();
+        loc.x = GetRandomX();
+        loc.y = GetRandomY();
 
-        validTarget = !IsEntityPresent(target);
+        validLoc = !IsEntityPresent(loc);
 
-    } while (!validTarget);
+        attempts++;
 
-    World.cells[target.x][target.y].entity = &PlayerHero;
+        if (attempts == ValidRange.maxCells)
+        {
+            break;
+        }
+        
+    } while (!validLoc);
+
+    if (attempts < ValidRange.maxCells)
+    {
+        return loc;
+    }
+    else
+    {
+
+        exit(1);
+    }
+};
+
+// Player Generation
+// ------------------------------------------------------------
+
+void PlacePlayerRandom(void) {
+    FieldLoc loc = FindValidLoc();
+
+    World.cells[loc.x][loc.y].entity = &PlayerHero;
 };
 
 // Environment Generation
@@ -78,7 +99,7 @@ void GenerateGrass(void) {
     }
 };
 
-Entity* GenOakTree(void) {
+Entity* GenerateOakTree(void) {
     Entity* newOakTree = malloc(sizeof(Entity));
 
     newOakTree->type = OakTree.type;
@@ -90,10 +111,11 @@ Entity* GenOakTree(void) {
     return newOakTree;
 };
 
-// TODO - ensure gen does not generate on top of existing entity.
 void PopOakTrees(void) {
     for (int i = 0; i < EnvironGen.oakTreeFreq; i++)
     {
-        World.cells[GetRandomX()][GetRandomY()].entity = GenOakTree();
+        FieldLoc loc = FindValidLoc();
+
+        World.cells[loc.x][loc.y].entity = GenerateOakTree();
     }
 };

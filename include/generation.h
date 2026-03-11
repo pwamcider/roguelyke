@@ -10,6 +10,7 @@ typedef struct LocRange {
 	int max_x;
 	int min_y;
 	int max_y;
+	int maxCells;
 } LocRange;
 
 typedef struct GroundGenValues {
@@ -28,7 +29,8 @@ extern unsigned int GameSeed;
 // Function Prototypes
 // ------------------------------------------------------------
 
-Entity* GenOakTree(void);
+Entity* GenerateOakTree(void);
+FieldLoc FindValidLoc(void);
 int GetRandomX(void);
 int GetRandomY(void);
 void AssignGameSeed(void);
