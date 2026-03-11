@@ -1,5 +1,7 @@
 #pragma once
 
+#include "world.h"
+
 // Declarations
 // ------------------------------------------------------------
 
@@ -14,6 +16,11 @@ typedef struct GroundGenValues {
 	int grassFreq;
 } GroundGenValues;
 
+typedef struct EnvironGenValues {
+	int oakTreeFreq;
+} EnvironGenValues;
+
+extern EnvironGenValues EnvironGen;
 extern GroundGenValues GroundGen;
 extern LocRange ValidRange;
 extern unsigned int GameSeed;
@@ -21,8 +28,10 @@ extern unsigned int GameSeed;
 // Function Prototypes
 // ------------------------------------------------------------
 
+Entity* GenOakTree(void);
 int GetRandomX(void);
 int GetRandomY(void);
+void AssignGameSeed(void);
 void GenerateGrass(void);
 void PlacePlayerRandom(void);
-void AssignGameSeed(void);
+void PopOakTrees(void);
