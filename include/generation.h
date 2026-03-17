@@ -1,5 +1,6 @@
 #pragma once
 
+#include "stdlib.h"
 #include "world.h"
 
 // Declarations
@@ -29,11 +30,10 @@ extern unsigned int GameSeed;
 // Function Prototypes
 // ------------------------------------------------------------
 
-Entity* GenerateOakTree(void);
-FieldLoc FindValidLoc(void);
+bool FindValidLoc(FieldLoc* loc);
 int GetRandomX(void);
 int GetRandomY(void);
 void AssignGameSeed(void);
 void GenerateGrass(void);
-void PlacePlayerRandom(void);
+void PopHeroRandom(void);
 void PopOakTrees(void);

@@ -1,7 +1,7 @@
 #include "creatures.h"
 #include "generation.h"
+#include "hero.h"
 #include "raylib.h"
-#include "stdlib.h"
 #include "time.h"
 #include "update.h"
 
@@ -37,47 +37,33 @@ int GetRandomY(void) {
     return GetRandomValue(ValidRange.min_y, ValidRange.max_y);
 };
 
-// TODO - build in failsafe below in case every cell is occupied by an entity
-FieldLoc FindValidLoc(void) {
-    bool validLoc = false;
-    int attempts = 0;
-
-    FieldLoc loc;
-
-    do
+// TODO - Consider adding a full-scan of the field if there's only one free cell left
+// and the maxCells value isn't adequate number of attempts.
+bool FindValidLoc(FieldLoc* loc) {
+    for (int attempts = 0; attempts < ValidRange.maxCells; attempts++)
     {
-        loc.x = GetRandomX();
-        loc.y = GetRandomY();
+        loc->x = GetRandomX();
+        loc->y = GetRandomY();
 
-        validLoc = !IsEntityPresent(loc);
-
-        attempts++;
-
-        if (attempts == ValidRange.maxCells)
+        if (!IsEntityPresent(*loc))
         {
-            break;
+            return true;
         }
         
-    } while (!validLoc);
-
-    if (attempts < ValidRange.maxCells)
-    {
-        return loc;
     }
-    else
-    {
-
-        exit(1);
-    }
+    return false;
 };
 
-// Player Generation
+// Hero Placement
 // ------------------------------------------------------------
 
-void PlacePlayerRandom(void) {
-    FieldLoc loc = FindValidLoc();
+void PopHeroRandom(void) {
+    FieldLoc loc;
 
-    World.cells[loc.x][loc.y].entity = &PlayerHero;
+    if (FindValidLoc(&loc))
+    {
+        World.cells[loc.x][loc.y].entity = GenerateHero();
+    }
 };
 
 // Environment Generation
@@ -88,7 +74,7 @@ GroundGenValues GroundGen = {
 };
 
 EnvironGenValues EnvironGen = {
-    .oakTreeFreq = 5,
+    .oakTreeFreq = 4,
 };
 
 // TODO - refine this generation to favor "patches" of grass over truly random placement.
@@ -99,23 +85,14 @@ void GenerateGrass(void) {
     }
 };
 
-Entity* GenerateOakTree(void) {
-    Entity* newOakTree = malloc(sizeof(Entity));
-
-    newOakTree->type = OakTree.type;
-    newOakTree->icon = OakTree.icon;
-    newOakTree->color = OakTree.color;
-    newOakTree->data.creature.health = OakTree.data.creature.health;
-    newOakTree->data.creature.dodge = OakTree.data.creature.dodge;
-
-    return newOakTree;
-};
-
 void PopOakTrees(void) {
     for (int i = 0; i < EnvironGen.oakTreeFreq; i++)
     {
-        FieldLoc loc = FindValidLoc();
+        FieldLoc loc;
 
-        World.cells[loc.x][loc.y].entity = GenerateOakTree();
+        if (FindValidLoc(&loc))
+        {
+            World.cells[loc.x][loc.y].entity = GenerateOakTree();
+        }
     }
 };
