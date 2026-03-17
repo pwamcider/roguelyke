@@ -1,18 +1,19 @@
 #include "actions.h"
+#include "stdlib.h"
 #include "update.h"
 
 // TODO Can remove stdio after testing
 #include "stdio.h"
 
-// Player Attribute Fetching
+// Hero Attribute Fetching
 // ------------------------------------------------------------
 
-int GetPlayerStrength(void) {
-    return PlayerHero.data.hero.strength;
+int GetHeroStrength(Entity* entity) {
+    return entity->data.hero.strength;
 };
 
-int GetPlayerDex(void) {
-    return PlayerHero.data.hero.dex;
+int GetHeroDex(Entity* entity) {
+    return entity->data.hero.dex;
 };
 
 // Creature Attribute Fetching
@@ -36,24 +37,24 @@ int RollD20(void) {
 // Actions
 // ------------------------------------------------------------
 
-bool RollForHit(Entity* entity) {
-    int roll = RollD20() + GetPlayerDex();
+bool RollForHit(Entity* attacker, Entity* defender) {
+    int roll = RollD20() + GetHeroDex(attacker);
 
-    return roll >= GetCreatureDodge(entity);
+    return roll >= GetCreatureDodge(defender);
 };
 
 void AdjustCreatureHealth(Entity* entity, int adjust) {
     entity->data.creature.health = GetCreatureHealth(entity) - adjust;
 };
 
-void CalcHitDamage(Entity* entity) {
+void CalcHitDamage(Entity* attacker, Entity* defender) {
     // TODO - adjust calculation below to incorporate item values.
-    int hit = GetPlayerStrength();
+    int hit = GetHeroStrength(attacker);
 
-    AdjustCreatureHealth(entity, hit);
+    AdjustCreatureHealth(defender, hit);
 
     // TODO - TEMP
-    int newhealth = GetCreatureHealth(entity);
+    int newhealth = GetCreatureHealth(defender);
     printf("New creature health: %i\n", newhealth);
 };
 
@@ -65,26 +66,27 @@ bool DidCreatureDie(Entity* entity) {
 };
 
 void CreatureDies(FieldLoc target) {
-    // TODO - must eventually adjust for Malloc and free
+    free(World.cells[target.x][target.y].entity);
     World.cells[target.x][target.y].entity = NULL;
 };
 
 // Action Path
 // ------------------------------------------------------------
 
-void RunAction(FieldLoc target) {
+void RunAction(FieldLoc origin, FieldLoc target) {
     switch (CheckEntityType(target))
     {
     case CREATURE:
-        Entity* entity = GetEntity(target);
+        Entity* hero = GetEntity(origin);
+        Entity* creature = GetEntity(target);
         
         // Physical Hits
         // ------------------------------------------------------------
 
-        if (RollForHit(entity))
+        if (RollForHit(hero, creature))
         {
             printf("Hit!\n");
-            CalcHitDamage(entity);
+            CalcHitDamage(hero, creature);
         }
         else
         {
@@ -94,7 +96,7 @@ void RunAction(FieldLoc target) {
         // Combat Results
         // ------------------------------------------------------------
 
-        if (DidCreatureDie(entity))
+        if (DidCreatureDie(creature))
         {
             CreatureDies(target);
         }
