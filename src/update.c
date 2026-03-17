@@ -157,7 +157,8 @@ void CheckNearbyCells(FieldLoc origin) {
 // ------------------------------------------------------------
 
 void MovePlayer(FieldLoc origin, FieldLoc target) {
-    World.cells[target.x][target.y].entity = &PlayerHero;
+    
+    World.cells[target.x][target.y].entity = GetEntity(origin);
     World.cells[origin.x][origin.y].entity = NULL;
 };
 
@@ -178,7 +179,7 @@ void UpdatePlayer(int input, FieldLoc origin) {
         // Action
         else if (IsTargetLegal(target) && IsEntityPresent(target))
         {
-            RunAction(target);
+            RunAction(origin, target);
         }
     }
 };
