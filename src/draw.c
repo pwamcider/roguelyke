@@ -23,19 +23,9 @@ void DrawWorld(void) {
 
             if (World.cells[x][y].entity != NULL)
             {
-                switch (World.cells[x][y].entity->type)
-                {
-                case HERO:
-                    localIcon = PlayerHero.icon;
-                    localColor = PlayerHero.color;
-                    break;
-                case CREATURE:
-                    localIcon = World.cells[x][y].entity->icon;
-                    localColor = World.cells[x][y].entity->color;
-                    break;
-                default:
-                    break;
-                }
+                
+                localIcon = World.cells[x][y].entity->icon;
+                localColor = World.cells[x][y].entity->color;
             }
 
             else
