@@ -95,19 +95,5 @@ typedef struct FieldLoc
 // Declarations
 // ------------------------------------------------------------
 
-extern Entity PlayerHero;
 extern Field World;
 extern GroundVisuals Ground;
-
-// ------------------------------------------------------------
-
-// Sample function using prior example.
-/*
-int GetHealth(Entity* entity) {
-	if (entity->type == GOBLIN)
-	{
-		
-	}
-	
-};
-*/
