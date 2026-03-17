@@ -2,6 +2,7 @@
 
 #include "world.h"
 
+// Function Prototypes
 // ------------------------------------------------------------
 
-extern Entity OakTree;
+Entity* GenerateOakTree(void);
