@@ -24,8 +24,6 @@ void RunTests(void) {
 		.y = 15,
 	};
 
-	World.cells[2][2].entity = &OakTree;
-
 	CheckNearbyCells(testingLoc);
 }
 
@@ -38,7 +36,9 @@ void SetupGameState(void) {
 
 	GenerateGrass();
 
-	PlacePlayerRandom();
+    PopHeroRandom();
+
+    PopOakTrees();
 
     // TODO - Temp
     RunTests();
