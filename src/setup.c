@@ -6,6 +6,9 @@
 #include "update.h"
 #include "world.h"
 
+// TODO - TEMP
+#include "advlog.h"
+
 // ------------------------------------------------------------
 
 void InitGame(void) {
@@ -25,6 +28,7 @@ void RunTests(void) {
 	};
 
 	CheckNearbyCells(testingLoc);
+    LogTest();
 }
 
 void SetupGameState(void) {
