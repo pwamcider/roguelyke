@@ -1,15 +1,15 @@
 #pragma once
 
-#define AdvLogSize 10
+#define NumEntries 10
+#define EntryLength 64
 
 // ------------------------------------------------------------
 
-extern const char* AdvLog[AdvLogSize];
+extern char AdvLog[NumEntries][EntryLength];
 
 // Prototypes
 // ------------------------------------------------------------
 
+void ClearAdvLog(void);
 void LogTest(void);
-void PopAdvLog(void);
-void ShiftAdvLogEntriesDown(void);
-void UpdateAdvLog(const char* entry);
+void ShiftEntriesDown(void);
