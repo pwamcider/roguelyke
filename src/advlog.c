@@ -19,42 +19,30 @@ void ClearAdvLog(void) {
 void ShiftEntriesDown(void) {
     for (int entry = (NumEntries - 1); entry > 0; entry--)
     {
-        snprintf(AdvLog[entry], sizeof(AdvLog[entry]), AdvLog[entry - 1]);
+        strncpy(AdvLog[entry], AdvLog[entry - 1], sizeof(AdvLog[entry]));
     }
+};
+
+void UpdateAdvLog(const char* entry) {
+    ShiftEntriesDown();
+
+    snprintf(AdvLog[0], sizeof(AdvLog[0]), entry);
 };
 
 void LogTest(void) {
     ClearAdvLog();
 
-    char entry[] = "HIT 1!";
-    char entry2[] = "HIT 2!";
-    char entry3[] = "HIT 3!";
+    UpdateAdvLog("Hit 1!");
+    UpdateAdvLog("Hit 2!!");
+    UpdateAdvLog("Hit 3!!!");
+    UpdateAdvLog("CRITICAL HIT!!!!");
 
-    snprintf(AdvLog[0], sizeof(AdvLog[0]), entry);
-    snprintf(AdvLog[1], sizeof(AdvLog[1]), entry2);
-    snprintf(AdvLog[2], sizeof(AdvLog[2]), entry3);
+    char bonus[] = "You defeat the slime! Great job!";
 
-    ShiftEntriesDown();
+    UpdateAdvLog(bonus);
 
-    char entry4[] = "HIT 4!";
-
-    snprintf(AdvLog[0], sizeof(AdvLog[0]), entry4);
-
-    printf(AdvLog[0]);
-    printf("\n");
-    printf(AdvLog[1]);
-    printf("\n");
-    printf(AdvLog[2]);
-    printf("\n");
-    printf(AdvLog[3]);
-    printf("\n");
+    for (int entry = 0; entry < NumEntries; entry++)
+    {
+        printf("%s\n", AdvLog[entry]);
+    }
 };
-
-/*
-void UpdateAdvLog(const char* entry) {
-    ShiftAdvLogEntriesDown();
-
-    AdvLog[0] = entry;
-};
-
-*/

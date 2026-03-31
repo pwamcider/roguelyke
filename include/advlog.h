@@ -13,3 +13,4 @@ extern char AdvLog[NumEntries][EntryLength];
 void ClearAdvLog(void);
 void LogTest(void);
 void ShiftEntriesDown(void);
+void UpdateAdvLog(const char* entry);
