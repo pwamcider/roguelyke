@@ -15,6 +15,11 @@ typedef struct View {
     Vector2 originPoint;
 } View;
 
+typedef struct AdventureLogUI {
+    float entryHeight;
+    Vector2 originPoint;
+} AdventureLogUI;
+
 typedef struct Text {
     int size;
     int spacing;
@@ -44,6 +49,7 @@ typedef struct Inputs {
 
 // ------------------------------------------------------------
 
+extern AdventureLogUI AdvLogUI;
 extern Inputs GameInputs;
 extern Text GameText;
 extern View GameView;

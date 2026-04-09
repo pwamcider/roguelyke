@@ -14,6 +14,11 @@ View GameView = {
     .originPoint = { 50.0f, 50.0f },
 };
 
+AdventureLogUI AdvLogUI = {
+    .entryHeight = 30.0,
+    .originPoint = {700.0f, 50.0f},
+};
+
 Text GameText = {
     .size = 20,
     .spacing = 5,
