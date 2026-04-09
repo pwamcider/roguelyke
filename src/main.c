@@ -22,7 +22,7 @@ int main(void)
 
 			UpdateGameState();
 			
-			DrawWorld();
+			DrawGame();
 
 		EndDrawing();
 	}
