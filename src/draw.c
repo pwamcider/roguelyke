@@ -1,3 +1,4 @@
+#include "advlog.h"
 #include "draw.h"
 #include "raylib.h"
 #include "resources.h"
@@ -51,4 +52,23 @@ void DrawWorld(void) {
                        GameText.size, GameText.spacing, localColor);
         }
     }
+};
+
+void DrawAdvLog(void) {
+    Vector2 target = {
+        .x = AdvLogUI.originPoint.x,
+    };
+
+    for (int entry = 0; entry < NumEntries; entry++)
+    {
+        target.y = ((float)entry * AdvLogUI.entryHeight) + AdvLogUI.originPoint.y;
+
+        DrawTextEx(gameFont, AdvLog[entry], target,
+                   GameText.size, GameText.spacing, WHITE);
+    }
+};
+
+void DrawGame(void) {
+    DrawWorld();
+    DrawAdvLog();
 };
