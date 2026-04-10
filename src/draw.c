@@ -55,14 +55,19 @@ void DrawWorld(void) {
 };
 
 void DrawAdvLog(void) {
-    Vector2 target = {
-        .x = AdvLogUI.originPoint.x,
-    };
+    Vector2 target;
 
     for (int entry = 0; entry < NumEntries; entry++)
     {
-        target.y = ((float)entry * AdvLogUI.entryHeight) + AdvLogUI.originPoint.y;
-
+        if (entry == 0)
+        {
+            target = AdvLogUI.originPoint;
+        }
+        else
+        {
+            target.x = AdvLogUI.indentPoint.x;
+            target.y = ((float)entry * AdvLogUI.entryHeight) + AdvLogUI.indentPoint.y;
+        }
         DrawTextEx(gameFont, AdvLog[entry], target,
                    GameText.size, GameText.spacing, WHITE);
     }
