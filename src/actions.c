@@ -1,4 +1,5 @@
 #include "actions.h"
+#include "advlog.h"
 #include "stdlib.h"
 #include "update.h"
 
@@ -56,6 +57,11 @@ void CalcHitDamage(Entity* attacker, Entity* defender) {
     // TODO - TEMP
     int newhealth = GetCreatureHealth(defender);
     printf("New creature health: %i\n", newhealth);
+
+    // Log Update for Successful Hit
+    char entry[EntryLength];
+    snprintf(entry, sizeof(entry), "You hit the %s for %i damage!", defender->logName, hit);
+    UpdateAdvLog(entry);
 };
 
 // Combat Results
@@ -90,7 +96,10 @@ void RunAction(FieldLoc origin, FieldLoc target) {
         }
         else
         {
-            printf("Miss!\n");
+            // Log Update for Missed Hit
+            char entry[EntryLength];
+            snprintf(entry, sizeof(entry), "You missed the %s!", creature->logName);
+            UpdateAdvLog(entry);
         }
 
         // Combat Results
@@ -98,6 +107,12 @@ void RunAction(FieldLoc origin, FieldLoc target) {
 
         if (DidCreatureDie(creature))
         {
+            // Log Update for Creature Dying
+            char entry[EntryLength];
+            snprintf(entry, sizeof(entry), "You defeated the %s!", creature->logName);
+            UpdateAdvLog(entry);
+
+            // Nullify Step
             CreatureDies(target);
         }
         break;
