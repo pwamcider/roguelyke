@@ -17,6 +17,7 @@ typedef struct View {
 
 typedef struct AdventureLogUI {
     float entryHeight;
+    Vector2 indentPoint;
     Vector2 originPoint;
 } AdventureLogUI;
 
