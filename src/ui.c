@@ -16,8 +16,8 @@ View GameView = {
 
 AdventureLogUI AdvLogUI = {
     .entryHeight = 30.0,
-    .originPoint = {700.0f, 50.0f},
-    .indentPoint = {700.0f, 70.0f},
+    .originPoint = {700.0f, 70.0f},
+    .indentPoint = {720.0f, 70.0f},
 };
 
 Text GameText = {
