@@ -53,6 +53,9 @@ typedef struct Entity {
 	} data;
 	EntityType type;
 
+	// Player-facing Name
+	const char* logName;
+
 	// Visuals
 	const char* icon;
 	Color color;
