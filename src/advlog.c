@@ -29,6 +29,16 @@ void UpdateAdvLog(const char* entry) {
     snprintf(AdvLog[0], sizeof(AdvLog[0]), entry);
 };
 
+void WriteWelcome(void) {
+    UpdateAdvLog("Use the NUM keys to adventure.");
+    UpdateAdvLog("Welcome to Roguelyke!");
+};
+
+void SetupAdvLog(void) {
+    ClearAdvLog();
+    WriteWelcome();
+};
+
 void LogTest(void) {
     ClearAdvLog();
 
