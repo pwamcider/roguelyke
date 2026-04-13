@@ -26,7 +26,6 @@ void RunTests(void) {
 		.x = 15,
 		.y = 15,
 	};
-
 	CheckNearbyCells(testingLoc);
 }
 
@@ -35,10 +34,7 @@ void SetupGameState(void) {
 
     SetRandomSeed(GameSeed);
 
-    ClearAdvLog();
-
-    // TODO - TEMP
-    UpdateAdvLog("Welcome to Roguelyke!");
+    SetupAdvLog();
 
 	ClearWorld();
 
