@@ -1,4 +1,5 @@
 #include "actions.h"
+#include "advlog.h"
 #include "raylib.h"
 #include "stdio.h"
 #include "ui.h"
@@ -180,6 +181,11 @@ void UpdatePlayer(int input, FieldLoc origin) {
         else if (IsTargetLegal(target) && IsEntityPresent(target))
         {
             RunAction(origin, target);
+        }
+        // Illegal Move
+        else if (!IsTargetLegal(target))
+        {
+            UpdateAdvLog("You can't move there.");
         }
     }
 };
