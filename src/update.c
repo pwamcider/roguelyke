@@ -129,7 +129,8 @@ bool IsTargetLegal(FieldLoc target) {
         && (target.y > -1 && target.y < fieldSizeY);
 };
 
-// TODO - current function also checks the origin
+// TODO TEMP
+// current function also checks the origin
 void CheckNearbyCells(FieldLoc origin) {    
     int i = 0;
 
