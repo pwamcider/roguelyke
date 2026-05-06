@@ -34,8 +34,8 @@ void RunTests(void) {
         .y = 0,
     };
     FieldLoc end = {
-        .x = 5,
-        .y = 5,
+        .x = 16,
+        .y = 3,
     };
 
     FieldLoc path[fieldSizeX * fieldSizeY];
@@ -47,21 +47,6 @@ void RunTests(void) {
         printf("Loc x = %i, Loc y = %i \n", path[i].x, path[i].y);
     }
 
-    FieldLoc trialA = {
-        .x = 17,
-        .y = 18,
-    };
-
-    FieldLoc trialB;
-
-    trialB = trialA;
-
-    printf("TrialB x = %i, TrialB y = %i\n", trialB.x, trialB.y);
-
-    if ((trialA.x == trialB.x) && (trialA.y == trialB.y))
-    {
-        printf("Success! They the same!\n");
-    }
 }
 
 void SetupGameState(void) {
