@@ -41,12 +41,6 @@ void RunTests(void) {
     FieldLoc path[fieldSizeX * fieldSizeY];
 
     int pathSize = FindPath(start, end, path, sizeof(path));
-
-    for (int i = 0; i < pathSize; i++)
-    {
-        printf("Loc x = %i, Loc y = %i \n", path[i].x, path[i].y);
-    }
-
 }
 
 void SetupGameState(void) {
