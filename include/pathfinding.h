@@ -16,8 +16,8 @@ typedef struct PathLoc {
 // ------------------------------------------------------------
 
 bool AreLocsEqual(FieldLoc a, FieldLoc b);
-bool IsLocIncluded(FieldLoc loc, PathLoc* list, int listLength);
 int FindPath(FieldLoc start, FieldLoc end, FieldLoc* out, size_t outCapacity);
+int GetLocIndex(FieldLoc loc, PathLoc* list, int listLength);
 
 /*
 Loop iteration:

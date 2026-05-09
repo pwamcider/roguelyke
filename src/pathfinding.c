@@ -7,16 +7,15 @@ bool AreLocsEqual(FieldLoc a, FieldLoc b) {
     return (a.x == b.x) && (a.y == b.y);
 };
 
-// TODO - more efficient way to scan over the PathLoc list?
-bool IsLocIncluded(FieldLoc loc, PathLoc* list, int listLength) {
+int GetLocIndex(FieldLoc loc, PathLoc* list, int listLength) {
     for (int index = 0; index < listLength; index++)
     {
         if (AreLocsEqual(loc, list[index].loc))
         {
-            return true;
+            return index;
         }
     }
-    return false;
+    return -1;
 };
 
 // Creature Pathfinding
@@ -30,8 +29,7 @@ int FindPath(FieldLoc start, FieldLoc end, FieldLoc* out, size_t outCapacity) {
     int frontierCount = 0;
     PathLoc frontier[fieldSizeX * fieldSizeY];
 
-    frontier[frontierCount].loc = start;
-    frontier[frontierCount].prev = start;
+    frontier[frontierCount] = (PathLoc) {.loc = start, .prev = start};
     frontierCount++;
 
     // Main Loop
@@ -46,6 +44,9 @@ int FindPath(FieldLoc start, FieldLoc end, FieldLoc* out, size_t outCapacity) {
         if (AreLocsEqual(target.loc, end))
         {
             // TODO - need to build path here?
+
+            checkedList[checkedCount] = target;
+            checkedCount++;
             break;
         }
 
@@ -56,8 +57,6 @@ int FindPath(FieldLoc start, FieldLoc end, FieldLoc* out, size_t outCapacity) {
         {
             for (int y = (target.loc.y - 1); y <= (target.loc.y + 1); y++)
             {
-                // This is the place where the PathLoc is built;
-                // We have access to both the previous (target) and the next thing to check (test)
                 FieldLoc test = {
                     .x = x,
                     .y = y,
@@ -65,31 +64,42 @@ int FindPath(FieldLoc start, FieldLoc end, FieldLoc* out, size_t outCapacity) {
 
                 if ((IsTargetLegal(test)) && 
                     (!IsEntityPresent(test)) &&
-                    (!IsLocIncluded(test, frontier, frontierCount)) &&
-                    (!IsLocIncluded(test, checkedList, checkedCount)))
+                    (GetLocIndex(test, frontier, frontierCount) == -1) && // Checks if test is present in frontier
+                    (GetLocIndex(test, checkedList, checkedCount) == -1)) // Checks if test is present in checked
                 {
-                    // ANTOINE to check
-                    frontier[frontierCount].loc = test;
-                    frontier[frontierCount].prev = target.loc;
+                    frontier[frontierCount] = (PathLoc) {.loc = test, .prev = target.loc};
                     frontierCount++;
                 }
             }
         }
     } while (frontierCount > 0);
+    
 
-    // ------------------------------------------------------------
-    // Fake Nonsense below
+    printf("Size of checked list: %i\n", checkedCount);
 
-    out[0].x = 0;
-    out[0].y = 0;
+    // TODO - the below code assumes a path was found; must account for no valid path.
+    // Path Build
+    int outIndex = 0;
+    out[outIndex] = checkedList[checkedCount - 1].loc;
+    outIndex++;
 
-    out[1].x = 1;
-    out[1].y = 1;
+    FieldLoc next = checkedList[checkedCount -1].prev;
 
-    out[2].x = 2;
-    out[2].y = 2; 
+    do
+    {
+        // TODO - needs failsafe if below returns -1
+        int nextIndex = GetLocIndex(next, checkedList, checkedCount);
 
-    out[3] = (FieldLoc) {.x = 3, .y = 3};
+        out[outIndex] = checkedList[nextIndex].loc;
+        outIndex++;
 
+        next = checkedList[nextIndex].prev;
+    } while (!AreLocsEqual(start, next));
+
+    for (int i = 0; i < outIndex; i++)
+    {
+        printf("Path step [%i] x%i, y%i\n", i, out[i].x, out[i].y);
+    }
+    
     return 4;
 };
